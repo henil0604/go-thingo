@@ -6,11 +6,28 @@ type Health = float64;
 type MaxHealth = Health;
 type Hunger = float64;
 type MaxHunger = Hunger;
+type Damage = Health
 
 const ( 
 	DefaultMaxHealth MaxHealth = 100;
 	DefaultMaxHunger MaxHunger = 100;
 )
+
+type AnimalInterface interface {
+	Reset()
+	SetHealth(health Health) Health
+	GetHealth() Health
+	IncreaseHealth(health Health) Health
+	DecreaseHealth(health Health) Health
+	SetHunger(hunger Hunger) Hunger
+	GetHunger() Hunger
+	IncreaseHunger(hunger Hunger) Hunger
+	DecreaseHunger(hunger Hunger) Hunger
+	ApplyDamage(damage Damage) Health
+	Heal(max Health) Health
+	IsDead() bool
+	Print()
+}
 
 type Animal struct {
 	health Health
@@ -91,7 +108,7 @@ func (a *Animal) DecreaseHunger(hunger Hunger) Hunger {
 
 // --------------
 
-func (a *Animal) ApplyDamage(damage Health) Health {
+func (a *Animal) ApplyDamage(damage Damage) Health {
 	return a.DecreaseHealth(damage);
 }
 
